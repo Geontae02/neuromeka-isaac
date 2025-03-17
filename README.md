@@ -58,7 +58,7 @@ This will generate a `.python.env` file in the `.vscode` directory, containing p
 This project includes modified code from [IsaacLabExtensionTemplate](https://github.com/isaac-sim/IsaacLabExtensionTemplate), which is licensed under the MIT License. See `LICENSE-MIT` for more details.
 
 ## Authors
-- **Joonho Lee**, **Yunho Kim** at Neuromeka
+- **Joonho Lee**, **Yunho Kim** at Neuromeka for moby
 
 ## Acknowledgements
 We sincerely appreciate the contributions of [Mayank Mittal](https://mayankm96.github.io/) for his support and insights in this project.
