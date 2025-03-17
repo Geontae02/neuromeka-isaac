@@ -21,3 +21,4 @@ __version__ = ORBIT_ASSETS_METADATA["package"]["version"]
 
 from .indy import *
 from .dual_arm import *
+from .moby import *
