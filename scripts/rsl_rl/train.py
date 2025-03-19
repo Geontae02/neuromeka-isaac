@@ -75,6 +75,8 @@ torch.backends.cudnn.benchmark = False
 # Neuromeka tasks
 import isaac_neuromeka.tasks
 
+#수정
+print(f"[DEBUG] 현재 실행되는 task: {args_cli.task}")
 
 @hydra_task_config(args_cli.task, "rsl_rl_cfg_entry_point")
 def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, agent_cfg: RslRlOnPolicyRunnerCfg):

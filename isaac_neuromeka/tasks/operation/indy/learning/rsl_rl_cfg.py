@@ -11,7 +11,7 @@ class ReachPPORunnerCfg(RslRlOnPolicyRunnerCfg):
     num_steps_per_env = 24
     max_iterations = 50000
     save_interval = 50
-    experiment_name = "Moby_navigation"
+    experiment_name = "indy_reach"
     run_name = ""
     resume = False
     empirical_normalization = False
