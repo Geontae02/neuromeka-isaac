@@ -38,7 +38,7 @@ class Indy7OperEnvCfg(OperationEnvCfg):
         self.actions.arm_action = mdp.JointPositionActionCfg(
             class_type=CustomJointPositionAction,
             #asset_name="robot", joint_names=["fl_tract_joint", "fr_tract_joint", "rl_tract_joint", "rr_tract_joint"], scale=0.2, use_default_offset=True
-            asset_name="robot", joint_names=["fl_tract_joint", "fr_tract_joint", "rl_tract_joint", "rr_tract_joint", "fl_rot_joint", "fr_rot_joint", "rl_rot_joint", "rr_rot_joint"], scale=0.2, use_default_offset=True
+            asset_name="robot", joint_names=["fl_tract_joint", "fr_tract_joint", "rl_tract_joint", "rr_tract_joint", "fl_rot_joint", "fr_rot_joint"], scale=0.2, use_default_offset=True
         )
         # override command generator body
         # end-effector is along z-direction
