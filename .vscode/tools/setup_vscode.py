@@ -116,7 +116,7 @@ def overwrite_python_analysis_extra_paths(isaaclab_settings: str) -> str:
     isaaclab_extensions = os.listdir(os.path.join(ISAACLAB_DIR, "source"))
 
     # isaaclab_extensions = 
-    path_names.extend(['"/home/joonho/git/IsaacLab/source/' + ext + '"' for ext in isaaclab_extensions])
+    path_names.extend(['"/home/geontae/IsaacLab/source/' + ext + '"' for ext in isaaclab_extensions])
     
     # combine them into a single string
     path_names = ",\n\t\t".expandtabs(4).join(path_names)

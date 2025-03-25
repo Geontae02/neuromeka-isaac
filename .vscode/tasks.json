@@ -20,7 +20,7 @@
         {
             "id": "isaaclab_path",
             "description": "IsaacLab path",
-            "default": "${HOME}/git/IsaacLab",
+            "default": "${HOME}/IsaacLab",
             "type": "promptString"
         }
     ]

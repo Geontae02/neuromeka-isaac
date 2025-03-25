@@ -6,6 +6,9 @@ from typing import TYPE_CHECKING
 import torch
 from isaaclab.managers import SceneEntityCfg
 
+from isaaclab.markers import VisualizationMarkers, VisualizationMarkersCfg
+import isaaclab.sim as sim_utils
+from isaaclab.sim import SphereCfg, PreviewSurfaceCfg
 
 if TYPE_CHECKING:
     from isaaclab.envs import ManagerBasedRLEnv
@@ -114,3 +117,77 @@ def action_delay_steps(env: CustomManagerBasedRLEnv) -> torch.Tensor:
         return env.delay_steps.reshape(-1, 1)
     else:
         return  torch.zeros((env.num_envs, 1), device=env.device, dtype=torch.long)
+
+# def generated_commands(env: ManagerBasedRLEnv, params: dict) -> torch.Tensor:
+#     """Returns the generated pose command and visualizes it."""
+#     command = env.command_manager.get_command(params["command_name"])  # shape: (num_envs, 7)
+
+#     # ⬇ 시각화 (매 10프레임마다)
+#     if env.sim_frame % 10 == 0:
+#         draw_sphere(env, position=command[:, :3], radius=0.03, color=(1.0, 0.0, 0.0, 1.0))  # 빨간 점
+#         draw_frame(env, pose=command, axis_length=0.1)
+
+#     return command
+
+# def generated_commands(env, params):
+#     command_name = params["command_name"]
+#     command = env.command_manager.get_command(command_name)
+
+#     if not hasattr(env, "ee_marker"):
+#         from isaaclab.markers import VisualizationMarkers, VisualizationMarkersCfg
+#         import isaaclab.sim as sim_utils
+
+#         cfg = VisualizationMarkersCfg(
+#             prim_path="/World/Visuals/EE_Target",
+#             markers={
+#                 "sphere": sim_utils.SphereCfg(
+#                     radius=0.03,
+#                     visual_material=sim_utils.PreviewSurfaceCfg(diffuse_color=(1.0, 0.0, 0.0)),
+#                 )
+#             },
+#         )
+#         env.ee_marker = VisualizationMarkers(cfg)
+
+#     if env.sim_frame % 10 == 0:
+#         env.ee_marker.visualize(translations=command[:, :3])  # 위치만 시각화
+
+#     return command
+
+# def generated_commands(env, params):
+#     # ee_pose 명령 받아오기
+#     command_name = params["command_name"]
+#     command = env.command_manager.get_command(command_name)
+#     _marker_cfg = VisualizationMarkersCfg(
+#     prim_path="/World/Visuals/EE_Target",  # 씬 상 경로
+#     markers={
+#         "target": SphereCfg(
+#             radius=0.03,  # 구의 반지름
+#             visual_material=PreviewSurfaceCfg(diffuse_color=(1.0, 0.0, 0.0)),  # 빨간색
+#          )
+#         },
+#     )
+
+# 마커 설정: 빨간 구체
+# _marker_cfg = VisualizationMarkersCfg(
+#     prim_path="/World/Visuals/EE_Target",  # 씬 상 경로
+#     markers={
+#         "target": SphereCfg(
+#             radius=0.03,  # 구의 반지름
+#             visual_material=PreviewSurfaceCfg(diffuse_color=(1.0, 0.0, 0.0)),  # 빨간색
+#         )
+#     },
+# )
+
+# # 마커 인스턴스 생성
+# _marker = VisualizationMarkers(cfg=_marker_cfg)
+
+# def generated_commands(env, params):
+#     # 'ee_pose' 명령을 받아옵니다.
+#     command_name = params["command_name"]
+#     command = env.command_manager.get_command(command_name)  # shape: (num_envs, 7)
+    
+#     # 시각화: 10프레임마다 구를 목표 위치에 표시
+#     if env.sim_frame % 10 == 0:
+#         _marker.visualize(translations=command[:, :3])  # position만 시각화
+
+#     return command

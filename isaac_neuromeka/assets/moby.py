@@ -17,7 +17,7 @@ MOBY_CFG = ArticulationCfg(
         usd_path=f"{os.path.dirname(os.path.abspath(__file__))}/model/usd/moby/moby.usd",
         activate_contact_sensors=True,
         rigid_props=sim_utils.RigidBodyPropertiesCfg(
-            disable_gravity=True,  # (Indy control framework already includes gravity compensation) 모비는?
+            disable_gravity=False,  # (Indy control framework already includes gravity compensation) 모비는?
             max_depenetration_velocity=5.0,
         ),
         articulation_props=sim_utils.ArticulationRootPropertiesCfg(
@@ -26,6 +26,14 @@ MOBY_CFG = ArticulationCfg(
     ),
     init_state=ArticulationCfg.InitialStateCfg(
         joint_pos={
+            # "fl_rot_joint": -3.14,
+            # "fr_rot_joint": 3.14,
+            # "rl_rot_joint": 3.14,
+            # "rr_rot_joint": -3.14,
+            # "fl_tract_joint": 0.0,
+            # "fr_tract_joint": 0.0,
+            # "rl_tract_joint": 0.0,
+            # "rr_tract_joint": 0.0,
             "fl_rot_joint": 0.0,
             "fr_rot_joint": 0.0,
             "rl_rot_joint": 0.0,
@@ -65,6 +73,20 @@ MOBY_CFG = ArticulationCfg(
             stiffness=100.0,
             damping=20.0,
         ),
+        #  "front_left_rot": ImplicitActuatorCfg(
+        #     joint_names_expr=["fl_rot_joint"],
+        #     velocity_limit=9.424778,  # 3π rad/s
+        #     effort_limit=60.0,
+        #     stiffness=100.0,
+        #     damping=20.0,
+        # ),
+        #  "front_right_rot": ImplicitActuatorCfg(
+        #     joint_names_expr=["fr_rot_joint"],
+        #     velocity_limit=9.424778,  # 3π rad/s
+        #     effort_limit=60.0,
+        #     stiffness=100.0,
+        #     damping=20.0,
+        # ),
     },
     soft_joint_pos_limit_factor=1.0,
 )

@@ -26,6 +26,7 @@ from isaac_neuromeka.env.rl_task_custom_env import HistoryManager
 from isaac_neuromeka.utils.etc import EmptyCfg
 import isaac_neuromeka.mdp as mdp
 import math
+from isaaclab.sim import UsdFileCfg
 
 ##
 # MDP settings
@@ -37,19 +38,37 @@ class CommandsCfg:
     """Command terms for the MDP."""
 
     class ConFig:
-        default_ee_pose = [0.3563, -0.1829,  0.5132]
+        #default_ee_pose = [-100, -100, 0]
+        default_ee_pose = [1.0, -1.0,  0]
     
     ee_pose = mdp.UniformPoseCommandCfg(
         asset_name="robot",
         body_name=MISSING, # TODO: multiple body names
-        resampling_time_range=(6.0, 10.0),
+        #resampling_time_range=(100.0, 105.0),
+        resampling_time_range=(100.0, 105.0),
         debug_vis=True,
+        # ranges=mdp.UniformPoseCommandCfg.Ranges( 
+        #     pos_x=(ConFig.default_ee_pose[0], ConFig.default_ee_pose[0] + 5.0),
+        #     pos_y=(ConFig.default_ee_pose[1] - 5.0, ConFig.default_ee_pose[1] + 5.0),
+        #     pos_z=(ConFig.default_ee_pose[2] - 0.1, ConFig.default_ee_pose[2]),
+        #     roll=(0.0, 0.0),
+        #     pitch=(0, 0),  # depends on end-effector axis
+        #     yaw=(-3.14, 3.14),
+        # ),
+        # ranges=mdp.UniformPoseCommandCfg.Ranges( 
+        #     pos_x=(ConFig.default_ee_pose[0], ConFig.default_ee_pose[0] + 0.05),
+        #     pos_y=(ConFig.default_ee_pose[1] - 0.05, ConFig.default_ee_pose[1] + 0.05),
+        #     pos_z=(ConFig.default_ee_pose[2] , ConFig.default_ee_pose[2]),
+        #     roll=(0.0, 0.0),
+        #     pitch=(0, 0),  # depends on end-effector axis
+        #     yaw=(-3.14, 3.14),
+        # ),
         ranges=mdp.UniformPoseCommandCfg.Ranges( 
-            pos_x=(ConFig.default_ee_pose[0], ConFig.default_ee_pose[0] + 0.3),
-            pos_y=(ConFig.default_ee_pose[1] - 0.2, ConFig.default_ee_pose[1] + 0.2),
-            pos_z=(ConFig.default_ee_pose[2] - 0.3, ConFig.default_ee_pose[2]),
+            pos_x=(0.0, 0.0),
+            pos_y=(0.0, 0.0),
+            pos_z=(0 , 0),
             roll=(0.0, 0.0),
-            pitch=(math.pi, math.pi),  # depends on end-effector axis
+            pitch=(0, 0),  # depends on end-effector axis
             yaw=(-3.14, 3.14),
         ),
     )
@@ -219,11 +238,16 @@ class CostsCfg:
         params={"asset_cfg": SceneEntityCfg("robot"), "soft_limit_ratio": 0.9}
     )
     
-    
+    ## 수정
+    # ee_spd = RewTerm(
+    #     func=mdp.ee_speed_cost_relu,
+    #     weight=1.0,
+    #     params={"asset_cfg": SceneEntityCfg("robot", body_names=["tcp"]), "speed_limit": 1.0}   
+    # )
     ee_spd = RewTerm(
         func=mdp.ee_speed_cost_relu,
         weight=1.0,
-        params={"asset_cfg": SceneEntityCfg("robot", body_names=["tcp"]), "speed_limit": 1.0}   
+        params={"asset_cfg": SceneEntityCfg("robot", body_names=["base_footprint"]), "speed_limit": 1.0}   
     )
     
     
